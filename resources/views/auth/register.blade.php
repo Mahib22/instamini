@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <div class="container">
+<x-app-layout>
+    <x-container>
         <div class="row py-4 d-flex align-items-center">
             <div class="col-md-6 p-4 order-1 order-md-0">
                 <img src="{{ asset('img/register.svg') }}" class="img-fluid" alt="img-register">
@@ -68,5 +68,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-guest-layout>
+    </x-container>
+</x-app-layout>

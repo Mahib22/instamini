@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <div class="container">
+<x-app-layout>
+    <x-container>
         <div class="row mt-4 pt-4">
             <div class="col-md-6 mx-auto">
                 <div class="card border-0 shadow-sm rounded">
@@ -44,5 +44,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-guest-layout>
+    </x-container>
+</x-app-layout>

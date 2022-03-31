@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <div class="container">
+<x-app-layout>
+    <x-container>
         <div class="row py-4 d-flex align-items-center">
             <div class="col-md-6 p-4 order-1 order-md-0">
                 <img src="{{ asset('img/login.svg') }}" class="img-fluid" alt="img-login">
@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary mt-4 rounded" type="submit">Masuk</button>
+                                <button class="btn btn-primary mt-3 rounded" type="submit">Masuk</button>
 
                                 <p class="text-center">Belum punya akun?
                                     <a href="{{ route('register') }}" class="text-decoration-none"> Buat akun</a>
@@ -67,5 +67,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-guest-layout>
+    </x-container>
+</x-app-layout>
