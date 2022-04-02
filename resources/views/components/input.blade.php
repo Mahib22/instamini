@@ -1,3 +1,15 @@
-@props(['disabled' => false])
+<div class="input-group mb-3">
+    @isset($icon)
+        <span class="input-group-text bg-light">
+            {{ $icon }}
+        </span>
+    @endisset
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50']) !!}>
+    <input required class="form-control @error($id) is-invalid @enderror" {{ $attributes }}>
+
+    @error($id)
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>

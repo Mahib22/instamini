@@ -6,65 +6,59 @@
             </div>
 
             <div class="col-md-6 p-4 order-0 order-md-1">
-                <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
-                        <h1 class="card-title text-center fs-3 text-uppercase mt-2">Masuk</h1>
+                <x-card>
+                    <x-slot name="header">
+                        <p class="mb-0 text-center h3 text-uppercase">Masuk</p>
+                    </x-slot>
 
-                        <!-- Session Status -->
-                        <x-auth-session-status :status="session('status')" />
+                    <!-- Session Status -->
+                    <x-auth-session-status :status="session('status')" />
 
-                        <!-- Validation Errors -->
-                        <x-auth-validation-errors :errors="$errors" />
+                    <form action="{{ route('login') }}" method="post" class="px-4 mt-2">
+                        @csrf
 
-                        <form action="{{ route('login') }}" method="post" class="px-4 py-2">
-                            @csrf
+                        <!-- Email Address -->
+                        <x-label for="email">Email/Username</x-label>
+                        <x-input type="email" id="email" name="email" :value="old('email')" autofocus
+                            autocomplete="email">
+                            <x-slot name="icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </x-slot>
+                        </x-input>
 
-                            <!-- Email Address -->
-                            <label for="inputEmail" class="form-label">Email/Username</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text bg-light">
-                                    <i class="fa-solid fa-user"></i>
-                                </span>
-                                <input type="email" class="form-control" id="inputEmail" name="email"
-                                    value="{{ old('email') }}" required autofocus autocomplete="email">
-                            </div>
+                        <!-- Password -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <x-label for="password">Password</x-label>
 
-                            <!-- Password -->
-                            <div class="d-flex justify-content-between align-items-center">
-                                <label for="inputPassword" class="form-label">Password</label>
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="text-decoration-none">
+                                    Lupa password
+                                </a>
+                            @endif
+                        </div>
+                        <x-input type="password" id="password" name="password" autocomplete="current-password">
+                            <x-slot name="icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </x-slot>
+                        </x-input>
 
-                                @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}" class="text-decoration-none">
-                                        Lupa password
-                                    </a>
-                                @endif
-                            </div>
-                            <div class="input-group mb-2">
-                                <span class="input-group-text bg-light">
-                                    <i class="fa-solid fa-lock"></i>
-                                </span>
-                                <input type="password" class="form-control" id="inputPassword" name="password"
-                                    required autocomplete="current-password">
-                            </div>
+                        <!-- Remember Me -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Tetap Masuk
+                            </label>
+                        </div>
 
-                            <!-- Remember Me -->
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">
-                                    Tetap Masuk
-                                </label>
-                            </div>
+                        <div class="d-grid gap-2">
+                            <x-button>Masuk</x-button>
 
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-primary mt-3 rounded" type="submit">Masuk</button>
-
-                                <p class="text-center">Belum punya akun?
-                                    <a href="{{ route('register') }}" class="text-decoration-none"> Buat akun</a>
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                            <p class="text-center">Belum punya akun?
+                                <a href="{{ route('register') }}" class="text-decoration-none"> Buat akun</a>
+                            </p>
+                        </div>
+                    </form>
+                </x-card>
             </div>
         </div>
     </x-container>
