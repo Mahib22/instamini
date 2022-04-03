@@ -12,20 +12,19 @@
                         Anda dan kami akan mengirim email kepada Anda tautan untuk membuat password baru.
                     </p>
 
-                    <!-- Session Status -->
-                    <x-auth-session-status :status="session('status')" />
-
                     <form action="{{ route('password.email') }}" method="post" class="p-2">
                         @csrf
 
                         <!-- Email Address -->
-                        <x-label for="email">Email/Username</x-label>
-                        <x-input type="email" id="email" name="email" :value="old('email')" autofocus
-                            autocomplete="email">
+                        <x-label for="email">Email</x-label>
+                        <x-input type="email" id="email" name="email" :value="old('email')" autofocus>
                             <x-slot name="icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </x-slot>
                         </x-input>
+
+                        <!-- Session Status -->
+                        <x-auth-session-status :status="session('status')" />
 
                         <div class="d-grid gap-2 mb-3">
                             <x-button>Kirim Email Reset Password</x-button>

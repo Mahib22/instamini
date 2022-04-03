@@ -8,24 +8,23 @@
             <div class="col-md-6 p-4 order-0 order-md-1">
                 <x-card>
                     <x-slot name="header">
-                        <p class="mb-0 text-center h3 text-uppercase">Daftar</p>
+                        <p class="mb-0 text-center h3 text-uppercase">Buat Akun</p>
                     </x-slot>
 
-                    <form action="{{ route('register') }}" method="post" class="px-4 mt-2">
+                    <form action="{{ route('register') }}" method="post" class="px-lg-4 mt-2">
                         @csrf
 
                         <!-- Email Address -->
-                        <x-label for="email">Email/Username</x-label>
-                        <x-input type="email" id="email" name="email" :value="old('email')" autofocus
-                            autocomplete="email">
+                        <x-label for="email">Email</x-label>
+                        <x-input type="email" id="email" name="email" :value="old('email')" autofocus>
                             <x-slot name="icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </x-slot>
                         </x-input>
 
-                        <!-- Name -->
-                        <x-label for="name">Nama</x-label>
-                        <x-input type="text" id="name" name="name" :value="old('name')" autofocus autocomplete="name">
+                        <!-- Username -->
+                        <x-label for="username">Username</x-label>
+                        <x-input type="text" id="username" name="username" :value="old('username')">
                             <x-slot name="icon">
                                 <i class="fa-solid fa-user"></i>
                             </x-slot>
@@ -33,7 +32,7 @@
 
                         <!-- Password -->
                         <x-label for="password">Password</x-label>
-                        <x-input type="password" id="password" name="password" autocomplete="current-password">
+                        <x-input type="password" id="password" name="password" autocomplete="new-password">
                             <x-slot name="icon">
                                 <i class="fa-solid fa-lock"></i>
                             </x-slot>

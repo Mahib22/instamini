@@ -1,48 +1,49 @@
 <x-app-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <x-container>
+        <div class="row mt-4 pt-4">
+            <div class="col-md-6 mx-auto">
+                <x-card>
+                    <x-slot name="header">
+                        <p class="mb-0 text-center h3 text-uppercase">Reset Password</p>
+                    </x-slot>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <form action="{{ route('password.update') }}" method="post" class="p-2">
+                        @csrf
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+                        <!-- Password Reset Token -->
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                        <!-- Email Address -->
+                        <x-label for="email">Email</x-label>
+                        <x-input type="email" id="email" name="email" :value="old('email', $request->email)" autofocus
+                            autocomplete="email">
+                            <x-slot name="icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </x-slot>
+                        </x-input>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+                        <!-- Password -->
+                        <x-label for="password">Password</x-label>
+                        <x-input type="password" id="password" name="password">
+                            <x-slot name="icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </x-slot>
+                        </x-input>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                    :value="old('email', $request->email)" required autofocus />
+                        <!-- Confirm Password -->
+                        <x-label for="password_confirmation">Konfirmasi Password</x-label>
+                        <x-input type="password" id="password_confirmation" name="password_confirmation">
+                            <x-slot name="icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </x-slot>
+                        </x-input>
+
+                        <div class="d-grid gap-2 mb-3">
+                            <x-button>Reset Password</x-button>
+                        </div>
+                    </form>
+                </x-card>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+        </div>
+    </x-container>
 </x-app-layout>

@@ -1,7 +1,9 @@
 <div class="card border-0 shadow-sm rounded">
-    <div class="card-header bg-white">
-        {{ $header }}
-    </div>
+    @isset($header)
+        <div class="card-header bg-white">
+            {{ $header }}
+        </div>
+    @endisset
 
     <div class="card-body">
         {{ $slot }}

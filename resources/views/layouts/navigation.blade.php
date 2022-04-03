@@ -30,20 +30,10 @@
                     </x-nav-link>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <x-nav-link :href="__('#')" id="notificationDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                <li class="nav-item">
+                    <x-nav-link :href="__('#')">
                         <i class="fa-solid fa-bell fs-5 ms-2"></i>
                     </x-nav-link>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
-                        <li class="dropdown-header">Notification</li>
-                        <x-dropdown-link :href="__('#')">
-                            Action
-                        </x-dropdown-link>
-                        <x-dropdown-link :href="__('#')">
-                            Another Action
-                        </x-dropdown-link>
-                    </ul>
                 </li>
 
                 <li class="nav-item dropdown">

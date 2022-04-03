@@ -11,16 +11,15 @@
                         <p class="mb-0 text-center h3 text-uppercase">Masuk</p>
                     </x-slot>
 
-                    <!-- Session Status -->
-                    <x-auth-session-status :status="session('status')" />
-
-                    <form action="{{ route('login') }}" method="post" class="px-4 mt-2">
+                    <form action="{{ route('login') }}" method="post" class="px-lg-4 mt-2">
                         @csrf
 
+                        <!-- Session Status -->
+                        <x-auth-session-status :status="session('status')" />
+
                         <!-- Email Address -->
-                        <x-label for="email">Email/Username</x-label>
-                        <x-input type="email" id="email" name="email" :value="old('email')" autofocus
-                            autocomplete="email">
+                        <x-label for="login">Email/Username</x-label>
+                        <x-input type="text" id="login" name="login" :value="old('login')" autofocus>
                             <x-slot name="icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </x-slot>
