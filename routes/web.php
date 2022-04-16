@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::view('/', 'dashboard')->name('dashboard');
+
+    Route::prefix('profile')->group(function () {
+        Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('edit', [ProfileController::class, 'update'])->name('profile.update');
+    });
+});
 
 require __DIR__ . '/auth.php';

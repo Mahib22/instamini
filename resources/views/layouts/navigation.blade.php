@@ -45,7 +45,7 @@
                         <x-dropdown-link :href="__('#')">
                             <i class="fa-solid fa-circle-user me-2"></i> Profile
                         </x-dropdown-link>
-                        <x-dropdown-link :href="__('#')">
+                        <x-dropdown-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                             <i class="fa-solid fa-gear me-2"></i> Settings
                         </x-dropdown-link>
                         <li>
