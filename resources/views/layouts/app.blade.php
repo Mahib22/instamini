@@ -22,7 +22,7 @@
     @endauth
 
     <!-- Page Content -->
-    <main class="pb-5">
+    <main class="pb-7">
         {{ $slot }}
     </main>
 </body>

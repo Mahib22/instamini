@@ -1,5 +1,5 @@
 <div class="input-group mb-3">
-    <textarea required rows="3" class="form-control @error($id) is-invalid @enderror"
+    <textarea rows="3" class="form-control @error($id) is-invalid @enderror"
         {{ $attributes }}>{{ $slot }}</textarea>
 
     @error($id)

@@ -5,7 +5,7 @@
         </span>
     @endisset
 
-    <input required class="form-control @error($id) is-invalid @enderror" {{ $attributes }}>
+    <input class="form-control @error($id) is-invalid @enderror" {{ $attributes }}>
 
     @error($id)
         <span class="invalid-feedback" role="alert">

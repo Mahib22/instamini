@@ -42,11 +42,11 @@
                         <i class="fa-solid fa-user fs-5 ms-2"></i>
                     </x-nav-link>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuDropdown">
-                        <x-dropdown-link :href="__('#')">
+                        <x-dropdown-link :href="route('profile', Auth::user()->username)" :active="request()->routeIs('profile')">
                             <i class="fa-solid fa-circle-user me-2"></i> Profile
                         </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                            <i class="fa-solid fa-gear me-2"></i> Settings
+                            <i class="fa-solid fa-gear me-2"></i> Pengaturan
                         </x-dropdown-link>
                         <li>
                             <hr class="dropdown-divider">
@@ -90,7 +90,7 @@
         <x-nav-link :href="__('#')">
             <i class="fa-solid fa-bell fs-4"></i>
         </x-nav-link>
-        <x-nav-link :href="__('#')">
+        <x-nav-link :href="route('profile', Auth::user()->username)" :active="request()->routeIs('profile')">
             <i class="fa-solid fa-user fs-4"></i>
         </x-nav-link>
     </x-container>

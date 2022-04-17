@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     //
+    public function index()
+    {
+        $user = auth()->user();
+        return view('profile.index', compact('user'));
+    }
+
     public function edit()
     {
         $user = auth()->user();
@@ -39,6 +44,6 @@ class ProfileController extends Controller
             'avatar' => $imageName,
         ]);
 
-        return redirect(RouteServiceProvider::HOME);
+        return back()->with('status', 'Profile berhasil diperbarui');
     }
 }
