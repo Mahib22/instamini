@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('{user}', [ProfileController::class, 'index'])->name('profile')->withoutMiddleware('auth');
     });
+
+    Route::resource('post', PostController::class);
 });
 
 require __DIR__ . '/auth.php';
