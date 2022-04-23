@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -76,6 +77,8 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::findOrFail($id);
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -88,6 +91,17 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $post = Post::findOrFail($id);
+
+        if ($post->user_id !== auth()->user()->id) {
+            abort(403);
+        }
+
+        $post->update([
+            'caption' => $request->caption,
+        ]);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

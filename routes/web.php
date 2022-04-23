@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('edit', [ProfileController::class, 'update'])->name('profile.update');
 
-        Route::get('{user}', [ProfileController::class, 'index'])->name('profile')->withoutMiddleware('auth');
+        Route::get('{username}', [ProfileController::class, 'index'])->name('profile')->withoutMiddleware('auth');
     });
 
     Route::resource('post', PostController::class);
