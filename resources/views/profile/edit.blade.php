@@ -53,12 +53,14 @@
                     <x-card>
                         <div class="p-2">
                             <div class="d-flex justify-content-between align-items-center position-relative">
-                                <a href="#" class="text-decoration-none text-black fs-5 stretched-link">Ubah Email</a>
+                                <a href="{{ route('email.edit') }}"
+                                    class="text-decoration-none text-black fs-5 stretched-link">Ubah Email</a>
                                 <i class="fa-solid fa-angle-right fs-5"></i>
                             </div>
                             <hr class="dropdown-divider">
                             <div class="d-flex justify-content-between align-items-center position-relative">
-                                <a href="#" class="text-decoration-none text-black fs-5 stretched-link">Ubah
+                                <a href="{{ route('password.edit') }}"
+                                    class="text-decoration-none text-black fs-5 stretched-link">Ubah
                                     Password</a>
                                 <i class="fa-solid fa-angle-right fs-5"></i>
                             </div>
