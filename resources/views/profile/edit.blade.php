@@ -15,7 +15,7 @@
                     <x-auth-session-status :status="session('status')" />
 
                     <div class="text-center mb-4">
-                        <x-avatar :user="$user" width="150px" />
+                        <x-avatar :avatar="$user->avatar" :username="$user->username" width="150px" />
                     </div>
 
                     <form action="{{ route('profile.update') }}" method="post" class="p-2"

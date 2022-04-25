@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UpdateEmailController;
@@ -17,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('@{username}', [ProfileController::class, 'index'])->name('profile');
+
 Route::middleware('auth')->group(function () {
-    Route::view('/', 'dashboard')->name('dashboard');
+    Route::get('/', DashboardController::class)->name('dashboard');
+
+    Route::resource('post', PostController::class);
 
     Route::prefix('profile')->group(function () {
         Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,10 +35,6 @@ Route::middleware('auth')->group(function () {
         Route::get('email/edit', [UpdateEmailController::class, 'edit'])->name('email.edit');
         Route::put('email/edit', [UpdateEmailController::class, 'update']);
     });
-
-    Route::get('@{username}', [ProfileController::class, 'index'])->name('profile')->withoutMiddleware('auth');
-
-    Route::resource('post', PostController::class);
 });
 
 require __DIR__ . '/auth.php';

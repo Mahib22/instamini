@@ -63,9 +63,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($identifier)
     {
         //
+        $post = Post::where('identifier', $identifier)->first();
+
+        return view('post.index', compact('post'));
     }
 
     /**
@@ -74,10 +77,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($identifier)
     {
         //
-        $post = Post::findOrFail($id);
+        $post = Post::where('identifier', $identifier)->first();
 
         if ($post->user_id !== auth()->user()->id) {
             abort(404);
