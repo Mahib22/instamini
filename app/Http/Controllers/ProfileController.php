@@ -51,4 +51,19 @@ class ProfileController extends Controller
 
         return back()->with('status', 'Profile berhasil diperbarui');
     }
+
+    public function follow($following_id)
+    {
+        $user = auth()->user();
+
+        if ($user->following->contains($following_id)) {
+            $user->following()->detach($following_id);
+            $message = ['status' => 'UNFOLLOW'];
+        } else {
+            $user->following()->attach($following_id);
+            $message = ['status' => 'FOLLOW'];
+        }
+
+        return response()->json($message);
+    }
 }

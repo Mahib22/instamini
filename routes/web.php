@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('post', PostController::class);
 
+    Route::get('/follow/{user_id}', [ProfileController::class, 'follow'])->name('follow');
+
     Route::prefix('profile')->group(function () {
         Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('edit', [ProfileController::class, 'update'])->name('profile.update');

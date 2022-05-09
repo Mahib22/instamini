@@ -10,9 +10,27 @@
                         <h1 class="mb-0">{{ $user->username }}</h1>
                         <p class="fw-bold fs-5">{{ $user->fullname }}</p>
                         <p>{{ $user->bio }}</p>
+
+                        @if (Auth::user()->id === $user->id)
+                            <a href={{ route('profile.edit') }} class="btn btn-primary">Edit Profile</a>
+                        @else
+                            <button class="btn btn-primary" onclick="follow({{ $user->id }}, this)">
+                                {{ Auth::user()->following->contains($user->id) ? 'Unfollow' : 'Follow' }}
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </x-container>
+
+    <script>
+        function follow(id, el) {
+            fetch('/follow/' + id)
+                .then(res => res.json())
+                .then(data => {
+                    el.innerText = (data.status === 'FOLLOW') ? 'Unfollow' : 'Follow';
+                });
+        }
+    </script>
 </x-app-layout>
