@@ -10,7 +10,12 @@ class DashboardController extends Controller
     //
     public function __invoke()
     {
-        $posts = Post::where('user_id', auth()->id())->get();
+        $user = auth()->user();
+
+        $id_list = $user->following()->pluck('follows.following_id')->toArray();
+        $id_list[] = $user->id;
+
+        $posts = Post::whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
         return view('dashboard', compact('posts'));
     }
 }

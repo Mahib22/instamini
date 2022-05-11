@@ -24,7 +24,8 @@
         @endif
     </div>
 
-    <img src="{{ asset('img/post/' . $item->img) }}" alt="" class="card-img-top rounded-0">
+    <img src="{{ asset('img/post/' . $item->img) }}" alt="imgPost-{{ $item->id }}" class="card-img-top rounded-0"
+        ondblclick="like({{ $item->id }})">
 
     <div class="card-body">
         @if (request()->routeIs('post.edit'))
@@ -43,7 +44,22 @@
                 </div>
             </form>
         @else
+            <button class="btn btn-primary" onclick="like({{ $item->id }})" id="btnPost-{{ $item->id }}">
+                {{ $item->isLiked() ? 'Unlike' : 'Like' }}
+            </button>
+
             <p class="card-text">{{ $item->caption }}</p>
         @endif
     </div>
 </div>
+
+<script>
+    function like(id) {
+        const el = document.getElementById('btnPost-' + id);
+        fetch('/like/' + id)
+            .then(res => res.json())
+            .then(data => {
+                el.innerText = (data.status === 'LIKE') ? 'Unlike' : 'Like';
+            });
+    }
+</script>

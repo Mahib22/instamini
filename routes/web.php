@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UpdateEmailController;
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('post', PostController::class);
 
     Route::get('/follow/{user_id}', [ProfileController::class, 'follow'])->name('follow');
+    Route::get('/like/{post_id}', [LikeController::class, 'toggle'])->name('like');
 
     Route::prefix('profile')->group(function () {
         Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
