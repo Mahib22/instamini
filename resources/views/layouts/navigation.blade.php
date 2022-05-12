@@ -5,9 +5,9 @@
         <div class="navbar-collapse">
             {{-- Form Search --}}
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <form class="d-flex">
+                <form class="d-flex" action="{{ route('search') }}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control border-end-0 bg-light" placeholder="Search"
+                        <input type="text" name="query" class="form-control border-end-0 bg-light" placeholder="Search"
                             aria-label="Search" aria-describedby="basic-addon2">
                         <button type="submit" class="input-group-text bg-light border-start-0" id="basic-addon2">
                             <i class="fa-solid fa-magnifying-glass"></i>

@@ -48,18 +48,7 @@
                 {{ $item->isLiked() ? 'Unlike' : 'Like' }}
             </button>
 
-            <p class="card-text">{{ $item->caption }}</p>
+            <p class="card-text captions">{{ $item->caption }}</p>
         @endif
     </div>
 </div>
-
-<script>
-    function like(id) {
-        const el = document.getElementById('btnPost-' + id);
-        fetch('/like/' + id)
-            .then(res => res.json())
-            .then(data => {
-                el.innerText = (data.status === 'LIKE') ? 'Unlike' : 'Like';
-            });
-    }
-</script>
