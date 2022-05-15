@@ -11,7 +11,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $querySearch = $request->input('query');
-        $posts = Post::where('caption', 'like', "%{$querySearch}%")->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user', 'likes')->where('caption', 'like', "%{$querySearch}%")->orderBy('created_at', 'desc')->get();
         return view('dashboard', compact('posts', 'querySearch'));
     }
 }

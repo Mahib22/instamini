@@ -10,7 +10,7 @@ class ProfileController extends Controller
     //
     public function index($username)
     {
-        $user = User::where('username', $username)->first();
+        $user = User::with('posts')->where('username', $username)->first();
         if (!$user) {
             abort(404);
         }
