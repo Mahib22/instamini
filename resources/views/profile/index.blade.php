@@ -23,14 +23,4 @@
             </div>
         </div>
     </x-container>
-
-    <script>
-        function follow(id, el) {
-            fetch('/follow/' + id)
-                .then(res => res.json())
-                .then(data => {
-                    el.innerText = (data.status === 'FOLLOW') ? 'Unfollow' : 'Follow';
-                });
-        }
-    </script>
 </x-app-layout>

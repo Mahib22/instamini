@@ -25,6 +25,8 @@
     <main class="pb-7">
         {{ $slot }}
     </main>
+
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>

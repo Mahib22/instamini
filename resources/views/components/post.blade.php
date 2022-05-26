@@ -2,7 +2,10 @@
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-start align-items-center">
             <x-avatar :avatar="$item->user->avatar" :username="$item->user->username" width="30px" />
-            <p class="fw-bold mb-0 ms-2">{{ $item->user->username }}</p>
+            <a href="{{ route('profile', $item->user->username) }}"
+                class="fw-bold mb-0 ms-2 text-decoration-none text-black">
+                {{ $item->user->username }}
+            </a>
         </div>
 
         @if ($item->user_id == Auth::user()->id)
@@ -16,9 +19,13 @@
                     <x-dropdown-link :href="route('post.edit', $item->identifier)">
                         Edit
                     </x-dropdown-link>
-                    <x-dropdown-link :href="__('#')">
-                        Hapus
-                    </x-dropdown-link>
+                    <form method="POST" action="{{ route('post.destroy', $item->identifier) }}">
+                        @csrf
+                        @method('DELETE')
+                        <x-dropdown-link :href="route('post.destroy', $item->identifier)"
+                            onclick="event.preventDefault(); this.closest('form').submit();">Hapus
+                        </x-dropdown-link>
+                    </form>
                 </ul>
             </div>
         @endif
@@ -47,6 +54,8 @@
             <button class="btn btn-primary" onclick="like({{ $item->id }})" id="btnPost-{{ $item->id }}">
                 {{ $item->isLiked() ? 'Unlike' : 'Like' }}
             </button>
+
+            <a href="{{ route('post.show', $item->identifier) }}" class="btn btn-primary">Komentar</a>
 
             <p class="card-text captions">{{ $item->caption }}</p>
         @endif

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
@@ -41,6 +42,11 @@ Route::middleware('auth')->group(function () {
 
         Route::get('email/edit', [UpdateEmailController::class, 'edit'])->name('email.edit');
         Route::put('email/edit', [UpdateEmailController::class, 'update']);
+    });
+
+    Route::prefix('comment')->group(function () {
+        Route::post('{post_id}', [CommentController::class, 'store'])->name('comment');
+        Route::get('{comment_id}/destroy', [CommentController::class, 'destroy'])->name('comment.destroy');
     });
 });
 

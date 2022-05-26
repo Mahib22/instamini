@@ -67,6 +67,7 @@ class PostController extends Controller
     {
         //
         $post = Post::where('identifier', $identifier)->first();
+        $post->load('comments.user');
 
         return view('post.index', compact('post'));
     }
@@ -118,8 +119,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($identifier)
     {
         //
+        $post = Post::where('identifier', $identifier)->first();
+
+        if ($post->user_id !== auth()->user()->id) {
+            abort(403);
+        }
+
+        $post->delete();
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }
