@@ -13,6 +13,12 @@
                                 {{ $comment->user->username }}
                             </a>
                             : {{ $comment->body }}
+
+                            <button class="btn btn-primary" onclick="like({{ $comment->id }}, 'comment')"
+                                id="btn-comment-{{ $comment->id }}">
+                                {{ $comment->isLiked() ? 'Unlike' : 'Like' }}
+                            </button>
+
                             @if (Auth::user()->id == $comment->user_id)
                                 <a href="{{ route('comment.destroy', $comment->id) }}"
                                     class="text-decoration-none">Hapus</a>

@@ -5,10 +5,10 @@ document.querySelectorAll(".captions").forEach(function(el) {
     el.innerHTML = renderedText;
 });
 
-// like post
-function like(id) {
-    const el = document.getElementById('btnPost-' + id);
-    fetch('/like/' + id)
+// like post dan komentar
+function like(id, type='post') {
+    let el = document.getElementById(`btn-${type}-${id}`);
+    fetch(`/like/${type}/${id}`)
         .then(res => res.json())
         .then(data => {
             el.innerText = (data.status === 'LIKE') ? 'Unlike' : 'Like';

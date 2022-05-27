@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Likes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Likes;
 
     protected $fillable = [
         'img',
@@ -18,16 +19,6 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
-
-    public function isLiked()
-    {
-        return $this->likes->where('user_id', auth()->id())->count();
     }
 
     public function comments()
