@@ -19,6 +19,8 @@
                                 {{ $comment->isLiked() ? 'Unlike' : 'Like' }}
                             </button>
 
+                            <span id="comment-likescount-{{ $comment->id }}">{{ $comment->likes_count }}</span>
+
                             @if (Auth::user()->id == $comment->user_id)
                                 <a href="{{ route('comment.destroy', $comment->id) }}"
                                     class="text-decoration-none">Hapus</a>

@@ -67,7 +67,7 @@ class PostController extends Controller
     {
         //
         $post = Post::where('identifier', $identifier)->first();
-        $post->load('comments.user');
+        $post->load('comments.user')->loadCount('likes');
 
         return view('post.index', compact('post'));
     }

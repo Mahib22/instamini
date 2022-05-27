@@ -51,6 +51,8 @@
                 </div>
             </form>
         @else
+            <span id="post-likescount-{{ $item->id }}">{{ $item->likes_count }}</span>
+
             <button class="btn btn-primary" onclick="like({{ $item->id }})" id="btn-post-{{ $item->id }}">
                 {{ $item->isLiked() ? 'Unlike' : 'Like' }}
             </button>

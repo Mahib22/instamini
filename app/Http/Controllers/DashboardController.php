@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $id_list = $user->following()->pluck('follows.following_id')->toArray();
         $id_list[] = $user->id;
 
-        $posts = Post::with('user', 'likes')->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user', 'likes')->withCount('likes')->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
         return view('dashboard', compact('posts'));
     }
 }

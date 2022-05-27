@@ -7,11 +7,23 @@ document.querySelectorAll(".captions").forEach(function(el) {
 
 // like post dan komentar
 function like(id, type='post') {
+    let likesCount = document.getElementById(`${type}-likescount-${id}`);
     let el = document.getElementById(`btn-${type}-${id}`);
+    
     fetch(`/like/${type}/${id}`)
         .then(res => res.json())
         .then(data => {
-            el.innerText = (data.status === 'LIKE') ? 'Unlike' : 'Like';
+            let currentCount = 0;
+
+            if (data.status === 'LIKE') {
+                currentCount = parseInt(likesCount.innerHTML) + 1;
+                el.innerText = 'Unlike';
+            } else {
+                currentCount = parseInt(likesCount.innerHTML) - 1;
+                el.innerText = 'Like';
+            }
+
+            likesCount.innerHTML = currentCount;
         });
 }
 
