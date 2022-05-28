@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <x-nav-link :href="__('#')">
+                    <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')">
                         <i class="fa-solid fa-bell fs-5 ms-2"></i>
                     </x-nav-link>
                 </li>
@@ -87,7 +87,7 @@
         <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
             <i class="fa-solid fa-square-plus fs-4"></i>
         </x-nav-link>
-        <x-nav-link :href="__('#')">
+        <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')">
             <i class="fa-solid fa-bell fs-4"></i>
         </x-nav-link>
         <x-nav-link :href="route('profile', Auth::user()->username)" :active="request()->routeIs('profile')">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -59,11 +60,36 @@ class ProfileController extends Controller
         if ($user->following->contains($following_id)) {
             $user->following()->detach($following_id);
             $message = ['status' => 'UNFOLLOW'];
+
+            $this->cancelNotify($user, $following_id);
         } else {
             $user->following()->attach($following_id);
             $message = ['status' => 'FOLLOW'];
+
+            $this->notify($user, $following_id);
         }
 
         return response()->json($message);
+    }
+
+    private function notify($user, $following_id)
+    {
+        $target_id = User::find($following_id)->id;
+        if ($user->id !== $target_id) {
+            Notification::create([
+                'message' => $user->username . ' mulai mengikuti anda.',
+                'user_id' => $target_id,
+                'post_id' => $user->id,
+            ]);
+        }
+    }
+
+    private function cancelNotify($user, $following_id)
+    {
+        $target_id = User::find($following_id)->id;
+        if ($user->id !== $target_id) {
+            Notification::where('user_id', $target_id)->where('post_id', $user->id)
+                ->where('message', 'like', '%mengikuti%')->delete();
+        }
     }
 }

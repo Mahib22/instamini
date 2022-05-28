@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -27,6 +28,8 @@ Route::get('search', [SearchController::class, 'index'])->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
+    Route::get('notification', [NotificationController::class, 'index'])->name('notification');
+    Route::get('notification/seen', [NotificationController::class, 'seen'])->name('notification.seen');
 
     Route::resource('post', PostController::class);
 
