@@ -31,9 +31,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')">
+                    <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')" class="position-relative">
                         <i class="fa-solid fa-bell fs-5 ms-2"></i>
+                        <span class="position-absolute translate-middle badge rounded-circle bg-info"
+                            id="notif-count"></span>
                     </x-nav-link>
+
+                    <script>
+                        fetch('/notification/count/')
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.total > 0) {
+                                    document.getElementById('notif-count').innerText = parseInt(data.total);
+                                }
+                            }).catch(error => console.log(error));
+                    </script>
                 </li>
 
                 <li class="nav-item dropdown">

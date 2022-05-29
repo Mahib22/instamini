@@ -29,4 +29,11 @@ class NotificationController extends Controller
         Notification::where('user_id', $user->id)->update(['is_read' => true]);
         return ['msg' => 'success'];
     }
+
+    public function count()
+    {
+        //
+        $total = auth()->user()->notifications()->where('is_read', 0)->count();
+        return ['total' => $total];
+    }
 }

@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
     Route::get('notification', [NotificationController::class, 'index'])->name('notification');
     Route::get('notification/seen', [NotificationController::class, 'seen'])->name('notification.seen');
+    Route::get('notification/count', [NotificationController::class, 'count'])->name('notification.count');
 
     Route::resource('post', PostController::class);
 

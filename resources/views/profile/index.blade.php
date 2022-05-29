@@ -20,6 +20,22 @@
                         @endif
                     </div>
                 </div>
+                <hr class="mt-4" />
+                <div class="d-flex justify-content-around">
+                    <div class="text-center">
+                        <p class="fw-bold fs-4 mb-0">{{ $user->posts()->count() }}</p>
+                        <p class="text-uppercase mb-0">Posts</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="fw-bold fs-4 mb-0">{{ $user->follower()->count() }}</p>
+                        <p class="text-uppercase mb-0">Followers</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="fw-bold fs-4 mb-0">{{ $user->following()->count() }}</p>
+                        <p class="text-uppercase mb-0">Following</p>
+                    </div>
+                </div>
+                <hr />
             </div>
         </div>
     </x-container>
