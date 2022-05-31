@@ -17,19 +17,19 @@ function like(id, type='post') {
 
             if (data.status === 'LIKE') {
                 currentCount = parseInt(likesCount.innerHTML) + 1;
-                el.innerText = 'Unlike';
+                el.innerHTML = "<i class='fa-solid fa-heart'></i>";
             } else {
                 currentCount = parseInt(likesCount.innerHTML) - 1;
-                el.innerText = 'Like';
+                el.innerHTML = "<i class='fa-regular fa-heart'></i>";
             }
 
-            likesCount.innerHTML = currentCount;
+            likesCount.innerHTML = `${currentCount} likes`;
         });
 }
 
 // follow button
 function follow(id, el) {
-    fetch('/follow/' + id)
+    fetch(`/follow/${id}`)
         .then(res => res.json())
         .then(data => {
             el.innerText = (data.status === 'FOLLOW') ? 'Unfollow' : 'Follow';

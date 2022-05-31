@@ -5,11 +5,15 @@
                 @forelse ($posts as $item)
                     <x-post :item="$item" />
                 @empty
-                    <h1>
-                        @isset($querySearch)
-                            "{{ $querySearch }}"
-                        @endisset Tidak ditemukan
-                    </h1>
+                    @if (request()->routeIs('dashboard'))
+                        <h1>Beranda Anda masih kosong</h1>
+                    @else
+                        <h1>
+                            @isset($querySearch)
+                                "{{ $querySearch }}"
+                            @endisset Tidak ditemukan
+                        </h1>
+                    @endif
                 @endforelse
             </div>
 

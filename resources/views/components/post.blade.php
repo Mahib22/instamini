@@ -51,15 +51,26 @@
                 </div>
             </form>
         @else
-            <span id="post-likescount-{{ $item->id }}">{{ $item->likes_count }}</span>
+            <div class="d-flex align-items-center">
+                <button class="btn fs-3 p-0 text-danger" onclick="like({{ $item->id }})"
+                    id="btn-post-{{ $item->id }}">
+                    <i class="fa-{{ $item->isLiked() ? 'solid' : 'regular' }} fa-heart"></i>
+                </button>
 
-            <button class="btn btn-primary" onclick="like({{ $item->id }})" id="btn-post-{{ $item->id }}">
-                {{ $item->isLiked() ? 'Unlike' : 'Like' }}
-            </button>
+                <a href="{{ route('post.show', $item->identifier) }}" class="px-3 fs-3 text-dark">
+                    <i class="fa-regular fa-comment"></i>
+                </a>
+            </div>
 
-            <a href="{{ route('post.show', $item->identifier) }}" class="btn btn-primary">Komentar</a>
+            <p class="text-muted">
+                <small id="post-likescount-{{ $item->id }}">{{ $item->likes_count }} likes</small>
+            </p>
 
             <p class="card-text captions">{{ $item->caption }}</p>
+
+            <p class="text-muted mb-0">
+                <small>{{ $item->created_at->diffForHumans() }}</small>
+            </p>
         @endif
     </div>
 </div>

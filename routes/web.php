@@ -22,20 +22,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('@{username}', [ProfileController::class, 'index'])->name('profile');
-
-Route::get('search', [SearchController::class, 'index'])->name('search');
-
 Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
-    Route::get('notification', [NotificationController::class, 'index'])->name('notification');
-    Route::get('notification/seen', [NotificationController::class, 'seen'])->name('notification.seen');
-    Route::get('notification/count', [NotificationController::class, 'count'])->name('notification.count');
+
+    Route::get('@{username}', [ProfileController::class, 'index'])->name('profile');
+
+    Route::get('search', [SearchController::class, 'index'])->name('search');
 
     Route::resource('post', PostController::class);
 
     Route::get('/follow/{user_id}', [ProfileController::class, 'follow'])->name('follow');
-    Route::get('/like/{type}/{post_id}', [LikeController::class, 'toggle'])->name('like');
+    Route::get('/like/{type}/{object_id}', [LikeController::class, 'toggle'])->name('like');
 
     Route::prefix('profile')->group(function () {
         Route::get('edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,6 +48,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('comment')->group(function () {
         Route::post('{post_id}', [CommentController::class, 'store'])->name('comment');
         Route::get('{comment_id}/destroy', [CommentController::class, 'destroy'])->name('comment.destroy');
+    });
+
+    Route::prefix('notification')->group(function () {
+        Route::get('/', [NotificationController::class, 'index'])->name('notification');
+        Route::get('seen', [NotificationController::class, 'seen'])->name('notification.seen');
+        Route::get('count', [NotificationController::class, 'count'])->name('notification.count');
     });
 });
 

@@ -7,9 +7,9 @@
                         <x-avatar :avatar="$user->avatar" :username="$user->username" width="150px" />
                     </div>
                     <div class="flex-grow-1 ms-4">
-                        <h1 class="mb-0">{{ $user->username }}</h1>
-                        <p class="fw-bold fs-5">{{ $user->fullname }}</p>
-                        <p>{{ $user->bio }}</p>
+                        <h1 class="mb-0 text-break">{{ $user->username }}</h1>
+                        <p class="fw-bold fs-5 text-break">{{ $user->fullname }}</p>
+                        <p class="text-break">{{ $user->bio }}</p>
 
                         @if (Auth::user()->id === $user->id)
                             <a href={{ route('profile.edit') }} class="btn btn-primary">Edit Profile</a>
@@ -36,6 +36,18 @@
                     </div>
                 </div>
                 <hr />
+                <div class="row">
+                    @forelse ($user->posts as $post)
+                        <div class="col-md-4 my-2">
+                            <a href="{{ route('post.show', $post->identifier) }}">
+                                <img src="{{ asset('img/post/' . $post->img) }}" alt="img-post-{{ $post->id }}"
+                                    class="img-fluid rounded">
+                            </a>
+                        </div>
+                    @empty
+                        <p class="text-center mt-4 fs-5 text-muted">Tidak ada postingan</p>
+                    @endforelse
+                </div>
             </div>
         </div>
     </x-container>
