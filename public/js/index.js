@@ -35,3 +35,8 @@ function follow(id, el) {
             el.innerText = (data.status === 'FOLLOW') ? 'Unfollow' : 'Follow';
         });
 }
+
+// preview image
+function preview() {
+    document.getElementById('previewImg').src = URL.createObjectURL(event.target.files[0]);
+}

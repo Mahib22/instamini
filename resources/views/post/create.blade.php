@@ -14,7 +14,9 @@
 
                         <!-- Image -->
                         <x-label for="img">Upload Foto</x-label>
-                        <x-input type="file" id="img" name="img" />
+                        <x-input type="file" id="img" name="img" onchange="preview()" />
+
+                        <img src="" alt="" id="previewImg" class="img-fluid mb-2">
 
                         <!-- Caption -->
                         <x-label for="caption">Caption</x-label>

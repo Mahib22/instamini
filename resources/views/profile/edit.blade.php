@@ -25,7 +25,11 @@
 
                         <!-- Avatar -->
                         <x-label for="avatar">Ubah Avatar</x-label>
-                        <x-input type="file" id="avatar" name="avatar" />
+                        <x-input type="file" id="avatar" name="avatar" onchange="preview()" />
+
+                        <div class="text-center">
+                            <img src="" alt="" id="previewImg" class="rounded-circle mb-2" width="150px">
+                        </div>
 
                         <!-- Username -->
                         <x-label for="username">Username</x-label>
